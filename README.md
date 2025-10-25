@@ -3,7 +3,7 @@
 ## Three-Layer Architecture
 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃ USER INTERFACE LAYER ┃
+┃ USER INTERFACE LAYER 
 ┃ (Streamlit) ┃
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
 ┃ 📝 Natural Language Query Input ┃
