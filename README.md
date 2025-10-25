@@ -89,7 +89,7 @@ An intelligent Q&A system that integrates heterogeneous agricultural and climate
 
 "What are the top 5 most produced crops in Punjab?"
 
-text
+
 
 ---
 
@@ -101,19 +101,10 @@ text
 - **Simplicity**: Interpretable, maintainable architecture
 
 ---
+<img width="1280" height="635" alt="image" src="https://github.com/user-attachments/assets/826c9023-01b5-48d5-ac90-068dba13517e" />
 
-## 📦 Project Structure
 
-project-samarth/
-├── app.py # Streamlit UI
-├── query_engine.py # Query processing & classification
-├── data_fetch.py # API integration layer
-├── requirements.txt # Python dependencies
-└── README.md # This file
 
-text
-
----
 
 ## 🛠️ Installation & Usage
 
@@ -123,7 +114,7 @@ pip install -r requirements.txt
 Run the application
 streamlit run app.py
 
-text
+
 
 ---
 
