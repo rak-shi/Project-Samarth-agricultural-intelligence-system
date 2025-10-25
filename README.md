@@ -1,6 +1,86 @@
 # 🌾 Project Samarth — Agricultural Intelligence System
 
 An intelligent Q&A system that integrates heterogeneous agricultural and climate data from data.gov.in to provide accurate, cited, data-driven insights for policy recommendations.
+## Three-Layer Architecture
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                     USER INTERFACE LAYER                    ┃
+┃                        (Streamlit)                          ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃  Natural Language Query Input                               ┃
+┃  Interactive Results Display                                ┃
+┃  Source Citation Rendering                                  ┃
+┃  Progress Indicators & Metrics                              ┃
+┗━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                       │
+                       ▼
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃                  QUERY ENGINE (Intelligence Layer)           ┃
+┃                     (query_engine.py)                        ┃
+┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
+┃                                                              ┃
+┃  🔍 QUERY CLASSIFICATION                                     ┃
+┃     ├─ Comparative Analysis                                  ┃
+┃     ├─ District-Level Analysis                               ┃
+┃     ├─ Trend Analysis                                        ┃
+┃     ├─ Policy Recommendation                                 ┃
+┃     └─ Simple Lookup                                         ┃
+┃                                                              ┃
+┃  🧩 ENTITY EXTRACTION                                        ┃
+┃     ├─ States (31 recognized)                                 ┃
+┃     ├─ Crops (rice, wheat, maize, sugarcane, cotton)          ┃
+┃     ├─ Years/Time Ranges                                      ┃
+┃     └─ Numeric Parameters (top N, last M years)               ┃
+┃                                                               ┃
+┃  🔀 DATA INTEGRATION                                         ┃
+┃     ├─ Multi-source data merging                              ┃
+┃     ├─ Temporal alignment                                     ┃
+┃     ├─ Schema normalization                                   ┃
+┃     └─ Aggregation & correlation                              ┃
+┃                                                               ┃
+┃  📌 CITATION MANAGEMENT                                       ┃
+┃     └─ Automatic source attribution                           ┃
+┃                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+                       │
+                       ▼
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃              DATA ACCESS LAYER (API Integration)              ┃
+┃                     (data_fetch.py)                           ┃
+┃                                                               ┃
+┃  ┌────────────────────────────┐  ┌───────────────────────────┐┃
+┃  │  MINISTRY OF AGRICULTURE   │  │  INDIA METEOROLOGICAL     │┃
+┃  │   & FARMERS WELFARE        │  │      DEPARTMENT (IMD)     │┃
+┃  ├────────────────────────────┤  ├───────────────────────────┤┃
+┃  │                            │  │                           │┃
+┃  │ 🌾 Crop Production Data    │  │ 🌧️ Rainfall Data         │┃
+┃  │                            │  │                           │┃
+┃  │ • State/District-wise      │  │ • Daily district records  │┃
+┃  │ • Crop: Rice, Wheat,       │  │ • Historical climate      │┃
+┃  │   Maize, Sugarcane, Cotton │  │ • Multi-year coverage     │┃
+┃  │ • Area & Production        │  │ • Millimeter precision    │┃
+┃  │ • Yearly aggregation       │  │                           │┃
+┃  │                            │  │                           │┃
+┃  │ 📊 Schema:                 │  │ 📊 Schema:               │┃
+┃  │ - state_name               │  │ - State                   │┃
+┃  │ - district_name            │  │ - District                │┃
+┃  │ - crop                     │  │ - Year                    │┃
+┃  │ - crop_year                │  │ - Rainfall (mm)           │┃
+┃  │ - production_ (tonnes)     │  │ - Date                    │┃
+┃  │ - area_ (hectares)         │  │                           │┃
+┃  │                            │  │                           │┃
+┃  └────────────────────────────┘  └───────────────────────────┘┃
+┃                                                               ┃
+┃  🔄 API Features:                                            ┃
+┃     ├─ REST API calls to data.gov.in                          ┃
+┃     ├─ Pagination (1000 records/request)                      ┃
+┃     ├─ Error handling & timeouts                              ┃
+┃     └─ Real-time data (no caching)                            ┃
+┃                                                               ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+```
+
+---
+
 
 
 
@@ -23,53 +103,77 @@ An intelligent Q&A system that integrates heterogeneous agricultural and climate
 
 ---
 
-## 🔄 Example Data Flow
+## Data Flow Example
 
-**Query**: *"Compare rainfall in Kerala and Tamil Nadu for last 5 years and show top 3 crops"*
+### Query: "Compare rainfall in Kerala and Tamil Nadu for last 5 years and show top 3 crops"
 
-📝 User Query
-↓
-🔍 Classification & Entity Extraction
-
-Type: Comparative Analysis
-
-States: [Kerala, Tamil Nadu]
-
-Years: [2020-2024]
-
-Top N: 3
-↓
-📡 Parallel API Calls
-
-Fetch Kerala rainfall (2020-2024)
-
-Fetch Tamil Nadu rainfall (2020-2024)
-
-Fetch crop data for both states
-↓
-🔀 Data Integration
-
-Aggregate rainfall by year
-
-Rank crops by production
-
-Add source citations
-↓
-📊 Response Generation
-
-Kerala: 2,845 mm (avg)
-📌 Source: IMD Dataset
-
-Tamil Nadu: 1,234 mm (avg)
-📌 Source: IMD Dataset
-
-Top 3 Crops per state
-📌 Source: Agriculture Dataset
-
-text
-
----
-
+```
+📝 USER INPUT
+   "Compare rainfall in Kerala and Tamil Nadu for last 5 years and show top 3 crops"
+              │
+              ▼
+┌─────────────────────────────────────────────────────────┐
+│ 🔍 QUERY CLASSIFICATION                                 │
+│    Type: Comparative Analysis + Top Crops               │
+└──────────────────┬──────────────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────────────┐
+│ 🧩 ENTITY EXTRACTION                                    │
+│    States: [Kerala, Tamil Nadu]                         │
+│    Years: [2020, 2021, 2022, 2023, 2024]                │
+│    Top N: 3                                             │
+└──────────────────┬──────────────────────────────────────┘
+                   ▼
+┌────────────────────────────────────────────────────────┐
+│ 📡 DATA FETCHING (Parallel)                            |
+│                                                        │
+│  ┌─────────────────┐         ┌─────────────────┐       │
+│  │ IMD API Call    │         │ Ministry API    │       │
+│  │ Kerala Rainfall │         │ Kerala Crops    │       │
+│  │ 2020-2024       │         │ 2020-2024       │       │
+│  └─────────────────┘         └─────────────────┘       │
+│                                                        │
+│  ┌─────────────────┐         ┌─────────────────┐       │
+│  │ IMD API Call    │         │ Ministry API    │       │
+│  │ TN Rainfall     │         │ TN Crops        │       │
+│  │ 2020-2024       │         │ 2020-2024       │       │
+│  └─────────────────┘         └─────────────────┘       │
+└──────────────────┬─────────────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────────────┐
+│ 🔀 DATA INTEGRATION                                     │
+│    • Aggregate rainfall by year                         │
+│    • Group crops by production                          │
+│    • Calculate averages and totals                      │
+│    • Rank top 3 crops per state                         │
+└──────────────────┬──────────────────────────────────────┘
+                   ▼
+┌─────────────────────────────────────────────────────────┐
+│ 📌 RESPONSE GENERATION WITH CITATIONS                   │
+│                                                          │
+│  📊 Rainfall Comparison Analysis                        │
+│     Kerala: 2,845.32 mm (avg over 5 years)              │
+│     📌 Source: IMD Rainfall Dataset, 1,234 records      │
+│                                                          │
+│     Tamil Nadu: 1,234.56 mm (avg over 5 years)           │
+│     📌 Source: IMD Rainfall Dataset, 987 records        │
+│                                                         │
+│  🌾 Top 3 Crops by Production                          │
+│     Kerala:                                             │
+│       1. Rice: 456,789 tons                             │
+│       2. Sugarcane: 234,567 tons                        │
+│       3. Cotton: 123,456 tons                           │
+│     📌 Source: Ministry of Agriculture Dataset          │
+│                                                         │
+│     Tamil Nadu:                                         │
+│       1. Rice: 789,012 tons                             │
+│       2. Sugarcane: 567,890 tons                        |
+│       3. Cotton: 234,567 tons                           |
+│     📌 Source: Ministry of Agriculture Dataset          |
+└──────────────────┬──────────────────────────────────────┘
+                   ▼
+               DISPLAY TO USER
+```
 ## 🎯 Key Design Decisions
 
 | Decision | Rationale |
