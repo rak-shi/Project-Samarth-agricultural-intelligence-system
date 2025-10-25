@@ -4,7 +4,7 @@ An intelligent Q&A system that integrates heterogeneous agricultural and climate
 ## Three-Layer Architecture
 <img width="486" height="675" alt="image" src="https://github.com/user-attachments/assets/f9ef8e21-b6e5-4d41-a47a-d9ce845cf0c7" />
 
-![Uploading image.png…]()
+<img width="513" height="645" alt="image" src="https://github.com/user-attachments/assets/24631059-2fbd-4561-b403-23e4c7bc1396" />
 
 
 ## 📊 Data Sources
