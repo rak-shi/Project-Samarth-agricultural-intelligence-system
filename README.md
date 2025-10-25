@@ -2,86 +2,7 @@
 
 An intelligent Q&A system that integrates heterogeneous agricultural and climate data from data.gov.in to provide accurate, cited, data-driven insights for policy recommendations.
 ## Three-Layer Architecture
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                     USER INTERFACE LAYER                    ┃
-┃                        (Streamlit)                          ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃  Natural Language Query Input                               ┃
-┃  Interactive Results Display                                ┃
-┃  Source Citation Rendering                                  ┃
-┃  Progress Indicators & Metrics                              ┃
-┗━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-                       │
-                       ▼
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃                  QUERY ENGINE (Intelligence Layer)           ┃
-┃                     (query_engine.py)                        ┃
-┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃                                                              ┃
-┃  🔍 QUERY CLASSIFICATION                                     ┃
-┃     ├─ Comparative Analysis                                  ┃
-┃     ├─ District-Level Analysis                               ┃
-┃     ├─ Trend Analysis                                        ┃
-┃     ├─ Policy Recommendation                                 ┃
-┃     └─ Simple Lookup                                         ┃
-┃                                                              ┃
-┃  🧩 ENTITY EXTRACTION                                        ┃
-┃     ├─ States (31 recognized)                                 ┃
-┃     ├─ Crops (rice, wheat, maize, sugarcane, cotton)          ┃
-┃     ├─ Years/Time Ranges                                      ┃
-┃     └─ Numeric Parameters (top N, last M years)               ┃
-┃                                                               ┃
-┃  🔀 DATA INTEGRATION                                         ┃
-┃     ├─ Multi-source data merging                              ┃
-┃     ├─ Temporal alignment                                     ┃
-┃     ├─ Schema normalization                                   ┃
-┃     └─ Aggregation & correlation                              ┃
-┃                                                               ┃
-┃  📌 CITATION MANAGEMENT                                       ┃
-┃     └─ Automatic source attribution                           ┃
-┃                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-                       │
-                       ▼
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃              DATA ACCESS LAYER (API Integration)              ┃
-┃                     (data_fetch.py)                           ┃
-┃                                                               ┃
-┃  ┌────────────────────────────┐  ┌───────────────────────────┐┃
-┃  │  MINISTRY OF AGRICULTURE   │  │  INDIA METEOROLOGICAL     │┃
-┃  │   & FARMERS WELFARE        │  │      DEPARTMENT (IMD)     │┃
-┃  ├────────────────────────────┤  ├───────────────────────────┤┃
-┃  │                            │  │                           │┃
-┃  │ 🌾 Crop Production Data    │  │ 🌧️ Rainfall Data         │┃
-┃  │                            │  │                           │┃
-┃  │ • State/District-wise      │  │ • Daily district records  │┃
-┃  │ • Crop: Rice, Wheat,       │  │ • Historical climate      │┃
-┃  │   Maize, Sugarcane, Cotton │  │ • Multi-year coverage     │┃
-┃  │ • Area & Production        │  │ • Millimeter precision    │┃
-┃  │ • Yearly aggregation       │  │                           │┃
-┃  │                            │  │                           │┃
-┃  │ 📊 Schema:                 │  │ 📊 Schema:               │┃
-┃  │ - state_name               │  │ - State                   │┃
-┃  │ - district_name            │  │ - District                │┃
-┃  │ - crop                     │  │ - Year                    │┃
-┃  │ - crop_year                │  │ - Rainfall (mm)           │┃
-┃  │ - production_ (tonnes)     │  │ - Date                    │┃
-┃  │ - area_ (hectares)         │  │                           │┃
-┃  │                            │  │                           │┃
-┃  └────────────────────────────┘  └───────────────────────────┘┃
-┃                                                               ┃
-┃  🔄 API Features:                                            ┃
-┃     ├─ REST API calls to data.gov.in                          ┃
-┃     ├─ Pagination (1000 records/request)                      ┃
-┃     ├─ Error handling & timeouts                              ┃
-┃     └─ Real-time data (no caching)                            ┃
-┃                                                               ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-```
-
----
-
-
+<img width="486" height="675" alt="image" src="https://github.com/user-attachments/assets/f9ef8e21-b6e5-4d41-a47a-d9ce845cf0c7" />
 
 
 ## 📊 Data Sources
@@ -108,7 +29,7 @@ An intelligent Q&A system that integrates heterogeneous agricultural and climate
 ### Query: "Compare rainfall in Kerala and Tamil Nadu for last 5 years and show top 3 crops"
 
 ```
-![Project Samarth data flow diagram](https://user-gen-media-assets.s3.amazonaws.com/seedream_images/b47c2eb9-08f9-455f-869e-0cac5fd96511.png)
+
 
 ```
 ## 🎯 Key Design Decisions
